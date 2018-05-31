@@ -1,0 +1,1 @@
+../../../../../XCThirdPlatformSDK/Classes/WeChatSDK/WXApi.h

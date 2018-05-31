@@ -1,42 +1,95 @@
-#
-# Be sure to run `pod lib lint XCThirdPlatformSDK.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
+
 
 Pod::Spec.new do |s|
   s.name             = 'XCThirdPlatformSDK'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of XCThirdPlatformSDK.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.version          = '0.0.1'
+  s.summary          = '第三方SDK资源包（微信V1.8.1、支付宝V15.5.0､ 科大讯飞语音播报SDK）'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  XCThirdPlatformSDK，第三方SDK资源包（微信V1.8.1、支付宝V15.5.0､ 科大讯飞语音播报SDK）
                        DESC
 
   s.homepage         = 'https://github.com/fanxiaocong/XCThirdPlatformSDK'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'fanxiaocong' => '1016697223@qq.com' }
   s.source           = { :git => 'https://github.com/fanxiaocong/XCThirdPlatformSDK.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '8.3'
 
-  s.source_files = 'XCThirdPlatformSDK/Classes/**/*'
+    # 微信SDK
+    s.subspec 'WeChatSDK' do |wechat|
+        wechat.source_files = 'XCThirdPlatformSDK/Classes/WeChatSDK/*.{h,m}'
+        wechat.public_header_files = 'XCThirdPlatformSDK/Classes/WeChatSDK/*.h'
+        
+        # 第三方 .a
+        wechat.vendored_libraries = 'XCThirdPlatformSDK/Classes/WeChatSDK/libWeChatSDK.a'
+        
+        wechat.frameworks = [
+        'CoreTelephony',
+        'SystemConfiguration',
+        'QuartzCore'
+        ]
+        
+        wechat.libraries = [
+        'z',
+        'sqlite3.0',
+        'c++'
+        ]
+    end
+
+
+    # 支付宝
+    s.subspec 'AlipaySDK' do |alipay|
+        alipay.resources = 'XCThirdPlatformSDK/Classes/AlipaySDK/AlipaySDK.bundle'
+        alipay.source_files = 'XCThirdPlatformSDK/Classes/AlipaySDK/*.h'
+        alipay.public_header_files = 'XCThirdPlatformSDK/Classes/AlipaySDK/*.h'
+        alipay.vendored_frameworks = 'XCThirdPlatformSDK/Classes/AlipaySDK/AlipaySDK.framework'
+        
+        alipay.frameworks = [
+        'CoreTelephony',
+        'SystemConfiguration',
+        'QuartzCore',
+        'CoreText',
+        'CoreGraphics',
+        'UIKit',
+        'Foundation',
+        'CFNetwork',
+        'CoreMotion'
+        ]
+        
+        alipay.libraries = [
+        'z',
+        'c++'
+        ]
+    end
+
+
+    # 科大讯飞语音播报SDK
+    s.subspec 'IFlySDK' do |ifly|
+        ifly.source_files = 'XCThirdPlatformSDK/Classes/IFlySDK/*.h'
+        ifly.public_header_files = 'XCThirdPlatformSDK/Classes/IFlySDK/*.h'
+        ifly.vendored_frameworks = 'XCThirdPlatformSDK/Classes/IFlySDK/iflyMSC.framework'
+        
+        ifly.frameworks= [
+        'CoreTelephony',
+        'SystemConfiguration',
+        'AVFoundation',
+        'CoreTelephony',
+        'AudioToolbox',
+        'Contacts',
+        'CoreLocation',
+        'AddressBook',
+        'QuartzCore',
+        'CoreGraphics'
+        ]
+        
+        ifly.libraries = [
+        'z',
+        'c++'
+        ]
+        
+        ifly.pod_target_xcconfig = {'ENABLE_BITCODE' => 'NO', 'ONLY_ACTIVE_ARCH' => 'NO'}
+    end
+
   
-  # s.resource_bundles = {
-  #   'XCThirdPlatformSDK' => ['XCThirdPlatformSDK/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

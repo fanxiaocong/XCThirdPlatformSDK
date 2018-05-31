@@ -1,0 +1,22 @@
+PODS:
+  - XCThirdPlatformSDK (0.0.1):
+    - XCThirdPlatformSDK/AlipaySDK (= 0.0.1)
+    - XCThirdPlatformSDK/IFlySDK (= 0.0.1)
+    - XCThirdPlatformSDK/WeChatSDK (= 0.0.1)
+  - XCThirdPlatformSDK/AlipaySDK (0.0.1)
+  - XCThirdPlatformSDK/IFlySDK (0.0.1)
+  - XCThirdPlatformSDK/WeChatSDK (0.0.1)
+
+DEPENDENCIES:
+  - XCThirdPlatformSDK (from `../`)
+
+EXTERNAL SOURCES:
+  XCThirdPlatformSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  XCThirdPlatformSDK: f2d4b5610aba2a88b6ea5b780ad5fa9963c3361f
+
+PODFILE CHECKSUM: 0db88a5a87416f066ee864440122d9b6a6f05520
+
+COCOAPODS: 1.5.0
