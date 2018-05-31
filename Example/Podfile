@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'XCThirdPlatformSDK_Example' do
+  pod 'XCThirdPlatformSDK', :path => '../'
+
+  target 'XCThirdPlatformSDK_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
